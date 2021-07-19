@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   04. Computed 캐싱
+# Description :
+#   01. Computed 속의 메소드는 캐싱기능이 있어서 성능면에서 우월함
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      msg : 'Hello Computed!'
+    }
+  },
+  computed: {
+    reversedMessage() {
+      return this.msg.split('').reverse().join('')
+    }
+  },
+  methods: {
+    reverseMessage() {
+      return this.msg.split('').reverse().join('')
+    }
+  }
+}
+</script>
