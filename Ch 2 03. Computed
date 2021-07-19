@@ -1,0 +1,85 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   03. Computed
+# Description :
+#   01. computed : 계산된 데이터
+#   02. fruit.split('').reverse().join('')
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <section v-if="hasFruit">
+    <h1>Fruits</h1>
+    <ul>
+      <li v-for="fruit in fruits" :key="fruit">
+        {{ fruit }}
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h1>reverseFruits</h1>
+    <ul>
+      <li v-for="fruit in reverseFruits" :key="fruit">
+        {{ fruit }}
+      </li>
+    </ul>
+  </section>
+</template>
+
+
+
+<script>
+export default {
+  data(){
+    return {
+      fruits: [
+        'Apple', 'Banana', 'Cherry'
+      ]
+    }
+  },
+  computed: {
+    hasFruit() {
+      return this.fruits.length > 0
+    },
+    reverseFruits() {
+      return this.fruits.map(fruit => {
+        return fruit.split('').reverse().join('')
+      })
+    }
+  }
+}
+</script>
+
+
+
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   03. Computed
+# Description :
+#   01. 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <Fruits>
+  </Fruits>
+</template>
+
+
+
+<script>
+import Fruits from '~/components/Fruits'
+export default {
+  components: {
+    Fruits
+  }
+}
+</script>
+
+
+
+<style lang="scss">
+
+</style>
