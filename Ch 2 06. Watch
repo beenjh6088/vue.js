@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   06. Watch
+# Description :
+#   01. watch 내의 메소드가 관리하려는 변수와 이름이 다를 경우 모니터링 기능이 안 되니 주의!!
+#   02. watch 내의 메소드에 매개변수 1개를 등록하면 변경된 데이터가 들어옴.
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <h1 @click="changeMessage">
+    {{ msg }}
+  </h1>
+  <h1>{{ reversedMessage }}</h1>
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      msg : 'Hello?!'
+    }
+  },
+  computed: {
+    reversedMessage() {
+      return this.msg.split('').reverse().join('')
+    }
+  },
+  watch: {
+    // msg() {
+    //   console.log('msg : ', this.msg)
+    // },
+    // 위의 메소드와 기능적으로 동일함
+    msg(newVal) {
+      console.log('msg02 : ', newVal)
+    },
+    reversedMessage() {
+      console.log('reversedMessage : ', this.reversedMessage)
+    }
+  },
+  methods: {
+    changeMessage() {
+      this.msg = 'Good!'
+    }
+  }
+}
+</script>
