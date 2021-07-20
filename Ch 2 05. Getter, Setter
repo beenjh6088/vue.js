@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   05. Getter, Setter
+# Description :
+#   01. computed : 읽기 전용 데이터
+#   02. reversedMessage 안에 get()과 set()을 설정하면 Getter, Setter역학을 할 수 있음. get(), set()의 이름이 바뀌면 상황에 맞게 자동실행이 안 되니 주의!!
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <button @click="add">
+    ADD
+  </button>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      // Getter, Setter
+      msg : 'Hello Computed!'
+    }
+  },
+  computed: {
+    // Getter
+    // reversedMessage() {
+    //   return this.msg.split('').reverse().join('')
+    // }
+    // Getter, Setter
+    reversedMessage: {
+      get() {
+        return this.msg.split('').reverse().join('')
+      },
+      set(newValue) {
+        this.msg = newValue
+      }
+    }
+  },
+  methods: {
+    add() {
+      this.reversedMessage += '!?'
+    }
+  }
+}
+</script>
