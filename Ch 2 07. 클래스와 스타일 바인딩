@@ -1,0 +1,87 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   07. 클래스와 스타일 바인딩
+# Description :
+#   01. :class="{ active : isActive }" : isActive가 true이면 class에 'active'라는 값을 할당, 아니면 미할당
+#   02. :class="{ active: isActive, 'text-danger': hasError }" : text-dange에 작은따옴표는 하이픈을 포함하기 위함
+#   03. :class="classObject" : 바인딩 된 객체는 인라인일 피료가 없다 >> 객체 바인딩
+#     data() {
+#       classObject : {
+#         key01 : val01,
+#         key02 : val02,
+#         ...
+#       }
+#     }
+#   04. 객체를 반환하는 computed property에 바인딩 할 수 있다.
+#     computed: {
+#       classObject() {
+#         return {
+#           active: this.isActive && !this.error,
+#           'text-danger': this.error && this.error.type === 'fatal'
+#         }
+#       }
+#     }
+#   05. <div :class="[activeClass, errorClass]"></div> : 배열 바인딩
+#     data() {
+#       return {
+#         activeClass: 'active',
+#         errorClass: 'text-danger'
+#       }
+#     }
+#   06. <div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div> : 인라인 바인딩
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+<!-- 
+  <h1 
+    :class="{ active : isActive }"
+    @click="activate">
+    Hello?!({{ isActive }})
+  </h1>
+   -->
+  <h1
+    :style="[fontStyle, backgroundStyle]"
+    @click="changeStyle">
+    Hello?!
+  </h1>
+
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      isActive: false,
+      fontStyle: {
+        color: 'orange',
+        fontSize: '30px'
+      },
+      backgroundStyle: {
+        backgroundColor: 'black'
+      }
+    }
+  },
+  methods: {
+    activate() {
+      this.isActive = true
+    },
+    changeStyle() {
+      this.fontStyle.color = 'red'
+      this.fontStyle.fontSize = '50px'
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+  .active {
+    color: red;
+    font-weight: bold;
+  }
+</style>
