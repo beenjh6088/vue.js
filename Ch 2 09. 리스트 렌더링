@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   09. 리스트 렌더링
+# Description :
+#   01. shortid : 임의의 문자열 만들어주는 패키지
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+<!-- 
+  <ul>
+    <li
+      v-for="(fruit, index) in fruits"
+      :key="fruit">
+      {{ fruit }}-{{ index }}
+    </li>
+  </ul>
+ -->
+  <button @click="handler">Click me!!</button>
+  <ul>
+    <li
+      v-for="{id, name} in newFruits"
+      :key="id">
+      {{ name }}-{{ id }}
+    </li>
+  </ul>
+</template>
+
+
+
+<script>
+import shortid from 'shortid'
+
+export default {
+  data() {
+    return {
+      fruits: ['Apple', 'Banana', 'Cherry']
+    }
+  },
+  computed: {
+    newFruits() {
+      return this.fruits.map(fruit => ({
+          id: shortid.generate(),
+          name: fruit
+      }))
+    }
+  },
+  methods: {
+    handler() {
+      this.fruits.push('Orange')
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+
+</style>
