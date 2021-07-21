@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   08. 조건부 렌더링
+# Description :
+#   01. 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <button @click="handler">
+    Click me!
+  </button>
+  <!-- 
+  <h1 v-if="isShow">
+    Hello?!
+  </h1>
+  <h1 v-else-if="count > 3">
+    Count > 3
+  </h1>
+  <h1 v-else>
+    Good~
+  </h1>
+   -->
+  <div v-if="isShow">
+    <h1>Title</h1>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+  </div>
+
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      isShow: true,
+      count: 0
+    }
+  },
+  methods: {
+    handler() {
+      this.isShow = !this.isShow
+      this.count += 1
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+
+</style>
