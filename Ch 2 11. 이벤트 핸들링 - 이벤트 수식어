@@ -1,0 +1,104 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   11. 이벤트 핸들링 - 이벤트 수식어
+# Description :
+#   01. click.prevent
+#   02. click.once
+#   03. click.stop : stopPropagation()
+#   04. event bubbling : child에서 parent로 이벤트 전파
+#   05. event capturing : parent에서 child로 이벤트 전파
+#   06. click.self : 순수 자신의 영역만
+#   07. target : 사용자가 이벤트를 실행한 객체
+#   08. currentTarget : 실제 이벤트가 실행된 객체
+#   09. wheel : 스크롤
+#   10. wheel.passive : 로직, 이벤트 처리 따로따로
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+<!-- 
+  <a href="https://naver.com"
+    target="_blank"
+    @click.once="handler">
+    NAVER
+  </a>
+ -->
+
+<!-- 
+  <div 
+    class="parent"
+    @click="handlerA">
+    <div 
+      class="child"
+      ></div>
+  </div>
+ -->
+ <div
+  class="parent"
+  @wheel.passive="handler">
+  <div class="child"></div>
+ </div>
+
+</template>
+
+
+
+<script>
+export default {
+  methods: {
+    
+    // handler() {
+    //   console.log('ABC!')
+    // },
+
+
+    // handlerA(event) {
+    //   console.log(event.target)
+    //   console.log(event.currentTarget)
+    //   console.log('A')
+    // },
+    // handlerB(event) {
+    //   console.log('B')
+    // }
+
+    handler(event) {
+      for(let i = 0; i < 10000; i += 1) {
+        console.log(event)
+      }
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+  // .parent {
+  //   width: 200px;
+  //   height: 100px;
+  //   background-color: royalblue;
+  //   margin: 10px;
+  //   padding: 10px;
+  //   .child {
+  //     width: 100px;
+  //     height: 100px;
+  //     background-color: orange;
+  //   }
+  // }
+
+  .parent {
+    width: 200px;
+    height: 100px;
+    background-color: royalblue;
+    margin: 10px;
+    padding: 10px;
+    overflow: auto;
+    .child {
+      width: 100px;
+      height: 2000px;
+      background-color: orange;
+    }
+  }
+  
+</style>
