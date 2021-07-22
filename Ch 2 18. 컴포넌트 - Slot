@@ -1,0 +1,84 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   18. 컴포넌트 - Slot
+# Description :
+#   01. v-slot : #
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <MyBtn>
+    <template v-slot:icon>
+      <span>(B)</span>
+    </template>
+    <template #text>
+      <span>Banana</span>
+    </template>
+  </MyBtn>
+</template>
+
+
+
+<script>
+import MyBtn from '~/components/MyBtn'
+
+export default {
+  components: {
+    MyBtn
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+
+  
+</style>
+
+
+
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   18. 컴포넌트 - Slot
+# Description :
+#   01. 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <div 
+    class="btn">
+    <slot name="icon"></slot>
+    <slot name="text"></slot>
+  </div>
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      msg: ''
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+  .btn {
+    display: inline-block;
+    margin: 4px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+  }
+ 
+</style>
