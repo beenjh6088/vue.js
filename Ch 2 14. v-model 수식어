@@ -1,0 +1,55 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   14. v-model 수식어
+# Description :
+#   01. 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <h1>{{ msg }}</h1>
+  <input 
+    type="text"
+    :value="msg"
+    @input="msg = $event.target.value">
+  <h1>{{ msg }}</h1>
+  <input 
+    type="text"
+    v-model.lazy="msg">
+  <h1>{{ msg }}</h1>
+  <input 
+    type="text"
+    v-model.number="msg">
+  <h1>{{ msg }}</h1>
+  <input 
+    type="text"
+    v-model.trim="msg">
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      msg: 'Hello world!'
+    }
+  },
+  watch: {
+    msg() {
+      console.log(this.msg)
+    }
+  },
+  methods: {
+
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+
+  
+</style>
