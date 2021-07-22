@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   17. 컴포넌트 - Emit
+# Description :
+#   01. 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <MyBtn
+    @heropy="log"
+    @change-msg="logMsg">
+    Banana
+  </MyBtn>
+</template>
+
+
+
+<script>
+import MyBtn from '~/components/MyBtn'
+
+export default {
+  components: {
+    MyBtn
+  },
+  methods: {
+    log(event) {
+      console.log('Click!!')
+      console.log(event)
+    },
+    logMsg(msg) {
+      console.log(msg)
+    }
+  }
+
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+
+  
+</style>
+
+
+
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 2. Vue 문법
+#   17. 컴포넌트 - Emit
+# Description :
+#   01. v-model(양방향 데이터 바인딩)
+#   02. watch(데이터 모니터링)
+#   03. $emit(부모자식간 이벤트, 데이터 이동)
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <div 
+    class="btn">
+    <slot></slot>
+  </div>
+  <h1
+    @dblclick="$emit('heropy', $event)">
+    ABC
+  </h1>
+  <input 
+    type="text"
+    v-model="msg">
+</template>
+
+
+
+<script>
+export default {
+  emits: [
+    'heropy',
+    'changeMsg'
+  ],
+  data() {
+    return {
+      msg: ''
+    }
+  },
+  watch: {
+    msg() {
+      this.$emit('changeMsg', this.msg)
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+  .btn {
+    display: inline-block;
+    margin: 4px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+  }
+ 
+</style>
