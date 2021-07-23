@@ -1,0 +1,106 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 3. 컴포지션API
+#   01. 개요
+# Description :
+#   01. 
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <h1 @click="increase">
+    {{ count }} / {{ doubleCount }}
+  </h1>
+  <h1>
+    {{ message }} / {{ reversedMessage }}
+  </h1>
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      message: 'Hello world!',
+      count: 0
+    }
+  },
+  computed: {
+    doubleCount() {
+      return this.count * 2
+    },
+    reversedMessage() {
+      return this.message.split('').reverse().join('')
+    }
+  },
+  methods: {
+    increase() {
+      this.count += 1
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+
+  
+</style>
+
+
+
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 3. 컴포지션API
+#   01. 개요
+# Description :
+#   01. Composition API의 장점 : 관련된 로직끼리 묶어줌.
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <h1 @click="increase">
+    {{ count }} / {{ doubleCount }}
+  </h1>
+  <h1>
+    {{ message }} / {{ reversedMessage }}
+  </h1>
+</template>
+
+
+
+<script>
+import { ref, computed } from 'vue'
+
+export default {
+  setup() {
+    const message = ref('Hello world!')
+    const reversedMessage = computed(() => {
+      return message.value.split('').reverse().join('')
+    })
+
+    const count = ref(0)
+    const doubleCount = computed(() => count.value * 2)
+    function increse() {
+      count.value += 1
+    }
+
+    return {
+      message,
+      reversedMessage,
+      count,
+      doubleCount,
+      increse
+    }
+  }
+}
+</script>
+
+
+
+<style lang="scss" scoped>
+
+  
+</style>
