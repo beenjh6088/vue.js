@@ -1,0 +1,120 @@
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 3. 컴포지션API
+#   03. 기본 옵션과 라이프사이클
+# Description :
+#   01. Component API 미사용
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <h1 @click="increase">
+    {{ count }} / {{ doubleCount }}
+  </h1>
+  <h1 @click="changeMessage">
+    {{ message }} / {{ reversedMessage }}
+  </h1>
+</template>
+
+
+
+<script>
+export default {
+  data() {
+    return {
+      count: 0,
+      message: 'Hello world!'
+    }
+  },
+  computed: {
+    doubleCount() {
+      return this.count * 2
+    },
+    reversedMessage() {
+      return this.message.split('').reverse().join('')
+    }
+  },
+  watch: {
+    message(newVal) {
+      console.log(newVal)
+    }
+  },
+  created() {
+    console.log(this.message)
+  },
+  mounted() {
+    console.log(this.count)
+  },
+  methods: {
+    increase() {
+      this.count += 1
+    },
+    changeMessage() {
+      this.message = 'Good?!'
+    }
+  }
+}
+</script>
+
+
+
+# -*- coding: utf-8 -*-
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+# Path : 
+#   Part 9. Vue.js
+#   Ch 3. 컴포지션API
+#   03. 기본 옵션과 라이프사이클
+# Description :
+#   01. Component API 사용
+#   02. Component API 사용시 import 대상이 많아짐. 키워드도 일부 변경됨(mounted >> onMounted)
+#   03. Component API 사용시 Created에 해당하는 라이프 사이클은 import 없이 그냥 사용하면 됨
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+<template>
+  <h1 @click="increase">
+    {{ count }} / {{ doubleCount }}
+  </h1>
+  <h1 @click="changeMessage">
+    {{ message }} / {{ reversedMessage }}
+  </h1>
+</template>
+
+
+
+<script>
+import { ref, computed, watch, onMounted } from 'vue'
+export default {
+  setup() {
+    const count = ref(0)
+    const doubleCount = computed(() => {
+      return count.value * 2
+    })
+    function increase() {
+      count.value += 1
+    }
+    onMounted(() => {
+      console.log(count.value)
+    })
+
+    const message = ref('Hello world')
+    const reversedMessage = computed(() => {
+      return message.value.split('').reverse().join('')
+    })
+    watch(message, newValue => {
+      console.log(newValue)
+    })
+    function changeMessage() {
+      message.value = 'Good?!'
+    }
+    console.log(message.value)
+
+    return {
+      count,
+      doubleCount,
+      increase,
+      message,
+      reversedMessage,
+      changeMessage
+    }
+  }
+}
+</script>
